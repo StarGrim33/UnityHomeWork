@@ -22,30 +22,20 @@ public class AlarmVolumeChanger : MonoBehaviour
         _alarm.PlayerExited += OnPlayerExited;
     }
 
-    public void OnPlayerExited()
-    {
-        if (_volumeCoroutine != null)
-        {
-            StopCoroutine(_volumeCoroutine);
-        }
-
-        _volumeCoroutine = StartCoroutine(FadeVolume(_currentVolume, MIN_VOLUME));
-    }
-
-    public void OnPlayerEntered()
-    {
-        if (_volumeCoroutine != null)
-        {
-            StopCoroutine(_volumeCoroutine);
-        }
-
-        _volumeCoroutine = StartCoroutine(FadeVolume(_currentVolume, MAX_VOLUME));
-    }
-
     private void OnDisable()
     {
         _alarm.PlayerEntered -= OnPlayerEntered;
         _alarm.PlayerExited -= OnPlayerExited;
+    }
+
+    public void OnPlayerExited()
+    {
+        FadeVolumeTarget(MIN_VOLUME);
+    }
+
+    public void OnPlayerEntered()
+    {
+        FadeVolumeTarget(MAX_VOLUME);
     }
 
     private IEnumerator FadeVolume(float startVolume, float endVolume)
@@ -59,5 +49,15 @@ public class AlarmVolumeChanger : MonoBehaviour
 
         _currentVolume = endVolume;
         _playAlarm.volume = _currentVolume;
+    }
+    
+    private void FadeVolumeTarget(float volumeTarget)
+    {
+        if (_volumeCoroutine != null)
+        {
+            StopCoroutine(_volumeCoroutine);
+        }
+
+        _volumeCoroutine = StartCoroutine(FadeVolume(_currentVolume, volumeTarget));
     }
 }

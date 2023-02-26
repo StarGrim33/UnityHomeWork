@@ -320,8 +320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cdc2f43de34df741bb6180e36ebd963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _template: {fileID: 5330130311244056607, guid: 00058bee64c6d79469ff4dfd00d288ca, type: 3}
-  _count: 5
+  _template: {fileID: 7686726272545502887, guid: 00058bee64c6d79469ff4dfd00d288ca, type: 3}
+  _count: 3
   _spawnArea: {x: 10.78, y: 3.6}
 --- !u!4 &220562753
 Transform:

@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _jumpForce = 1f;
 
+    private const float MOVEMENT_THRESHOLD = 0.01f;
+
     private Rigidbody2D _rigidbody2d;
 
     private void Start()
@@ -25,11 +27,11 @@ public class PlayerMovement : MonoBehaviour
             _rigidbody2d.AddForce(new Vector2(0, _jumpForce), ForceMode2D.Impulse);
         }
 
-        if(movement > 0.01f)
+        if(movement > MOVEMENT_THRESHOLD)
         {
             transform.localScale = Vector3.one;
         }
-        else if(movement < -0.01f)
+        else if(movement < -MOVEMENT_THRESHOLD)
         {
             transform.localScale = new Vector3(-1, 1,1);
         }
